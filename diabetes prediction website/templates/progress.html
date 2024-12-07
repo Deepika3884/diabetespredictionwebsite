@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Progress Tracking</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body
+    class="bg-gray-100 min-h-screen flex flex-col items-center justify-center"
+  >
+    <h1 class="text-3xl font-bold mb-6">Your Health Progress</h1>
+
+    {% if dates and glucose and insulin and bmi %}
+    <canvas id="progressChart" width="800" height="400"></canvas>
+    <script>
+      const ctx = document.getElementById('progressChart').getContext('2d');
+      const progressChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: {{ dates | tojson }},
+              datasets: [
+                  {
+                      label: 'Glucose Level',
+                      data: {{ glucose | tojson }},
+                      borderColor: 'rgba(255, 99, 132, 1)',
+                      fill: false,
+                  },
+                  {
+                      label: 'Insulin',
+                      data: {{ insulin | tojson }},
+                      borderColor: 'rgba(54, 162, 235, 1)',
+                      fill: false,
+                  },
+                  {
+                      label: 'BMI',
+                      data: {{ bmi | tojson }},
+                      borderColor: 'rgba(75, 192, 192, 1)',
+                      fill: false,
+                  },
+              ],
+          },
+          options: {
+              responsive: true,
+              plugins: {
+                  legend: {
+                      position: 'top',
+                  },
+              },
+              scales: {
+                  x: {
+                      title: {
+                          display: true,
+                          text: 'Date',
+                      },
+                  },
+                  y: {
+                      title: {
+                          display: true,
+                          text: 'Value',
+                      },
+                  },
+              },
+          },
+      });
+    </script>
+    {% else %}
+    <p class="text-gray-500">
+      No health metrics available to display progress.
+    </p>
+    {% endif %}
+  </body>
+</html>

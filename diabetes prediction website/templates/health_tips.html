@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actionable Health Tips</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 min-h-screen flex items-center justify-center"
+  >
+    <div class="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
+      <h1 class="text-3xl font-bold text-gray-800 text-center mb-6">
+        Actionable Health Tips
+      </h1>
+      <ul class="list-disc text-gray-700 space-y-4">
+        {% for tip in tips %}
+        <li>{{ tip }}</li>
+        {% endfor %}
+      </ul>
+      <div class="mt-6 text-center">
+        <a href="/" class="text-blue-500 hover:underline">Return to Home</a>
+      </div>
+    </div>
+  </body>
+</html>

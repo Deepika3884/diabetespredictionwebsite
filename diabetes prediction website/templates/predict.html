@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diabetes Prediction - Guest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 min-h-screen flex items-center justify-center"
+  >
+    <div class="bg-white shadow-lg rounded-lg p-8 max-w-lg w-full">
+      <h1 class="text-3xl font-bold text-gray-800 text-center mb-4">
+        Diabetes Prediction
+      </h1>
+      <p class="text-center text-gray-600 mb-6">
+        Welcome, Guest! Enter your health details to predict your diabetes
+        status.
+      </p>
+
+      <form action="/predict" method="POST" class="space-y-4">
+        <!-- Input fields -->
+        <div>
+          <label for="glucose" class="block text-gray-700 font-medium mb-1"
+            >Glucose Level</label
+          >
+          <input
+            type="text"
+            id="glucose"
+            name="Glucose Level"
+            placeholder="Enter Glucose Level"
+            required
+            class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+        <div>
+          <label for="insulin" class="block text-gray-700 font-medium mb-1"
+            >Insulin</label
+          >
+          <input
+            type="text"
+            id="insulin"
+            name="Insulin"
+            placeholder="Enter Insulin Level"
+            required
+            class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+        <div>
+          <label for="bmi" class="block text-gray-700 font-medium mb-1"
+            >BMI</label
+          >
+          <input
+            type="text"
+            id="bmi"
+            name="BMI"
+            placeholder="Enter BMI"
+            required
+            class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+        <div>
+          <label for="age" class="block text-gray-700 font-medium mb-1"
+            >Age</label
+          >
+          <input
+            type="text"
+            id="age"
+            name="Age"
+            placeholder="Enter Age"
+            required
+            class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            class="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white py-3 rounded-lg font-semibold shadow-md hover:from-purple-600 hover:to-blue-600 focus:outline-none transition duration-300"
+          >
+            Predict
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-6 text-center">
+        <p class="text-sm text-gray-500">
+          Want a personalized experience?
+          <a href="/register" class="text-blue-500 hover:underline">Register</a>
+          or <a href="/login" class="text-blue-500 hover:underline">Login</a>.
+        </p>
+      </div>
+
+      <!-- Display the prediction result -->
+      {% if result %}
+      <div class="mt-6 text-center">
+        <p class="text-lg font-semibold text-gray-800">{{ result }}</p>
+      </div>
+      {% endif %}
+
+      <!-- Show the Actionable Health Tips button if the user has diabetes -->
+      {% if show_tips %}
+      <div class="mt-6 text-center">
+        <a
+          href="/health-tips"
+          class="bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-lg text-center shadow-md transition duration-300"
+        >
+          Actionable Health Tips
+        </a>
+      </div>
+      {% endif %}
+
+      <!-- Navigation Links -->
+      <div class="mt-8 flex justify-between">
+        <a
+          href="/"
+          class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg text-center shadow-md transition duration-300"
+        >
+          Home
+        </a>
+        <a
+          href="/progress"
+          class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg text-center shadow-md transition duration-300"
+        >
+          View Progress
+        </a>
+        <a
+          href="/logout"
+          class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg text-center shadow-md transition duration-300"
+        >
+          Logout
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
